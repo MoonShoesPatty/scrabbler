@@ -10,4 +10,28 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 body, input {
     font-family: 'Montserrat', sans-serif;
 }
+body {
+    
+}
 
+/* ----- FORM STYLES ----- */
+.letterSubmission {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+.textInputWrapper {
+    border: 1px solid grey;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+input[type=text] {
+    padding: 10px;
+    border: none;
+}
+input[type=submit] {
+    padding: 10px;
+    background-color: orange;
+    border: none;
+}
