@@ -23,8 +23,10 @@ function findWords(letters) {
         // Eliminate all words that are too long
         // Elimniate 
 
+    
+
     // Run through the remaining array to find appropriate words
-    wordList.map(word => {
+    wordList.forEach(word => {
         if (wordMatch(userLetters, word)) {
             canSpellArray.push(word);
         }
@@ -34,22 +36,41 @@ function findWords(letters) {
         //     console.log(currentWordArray, letterArray[i]);
         // }
     })
+    console.log(canSpellArray)
 }
 
 // Given an array of letters (letters) and a string (word), determine whether it is possible to spell word with letters
 function wordMatch(letters, word) {
-
-    for (let i = 0; i < word.length; i++) {
+    for (let i = 0; i < letters.length; i++) {
         let hit = false;
-        for (let j = 0; j < letters.length; j++) {
-            console.log(word[i], letters[j]);
-            if (word[i] === letters[j]) {
-                j = letters.length;
+        for (let j = 0; j < word.length; j++) {
+            console.log(word[j], letters[i]);
+            if (word[j] === letters[i]) {
+                j = word.length;
+                hit = true;
                 console.log("^^^^^ Hit! ^^^^^");
             }
         }
-        if (hit)
     }
+
+
+
+    // console.log("spelled word: " + spelledWord.join(''));
+    // console.log("Equality check" + word.length === spelledWord.join('').length);
+
+    // return (word.length === spelledWord.join('').length)
+    
+    // for (let i = 0; i < word.length; i++) {
+    //     let hit = false;
+    //     for (let j = 0; j < letters.length; j++) {
+    //         console.log(word[i], letters[j]);
+    //         if (word[i] === letters[j]) {
+    //             j = letters.length;
+    //             console.log("^^^^^ Hit! ^^^^^");
+    //         }
+    //     }
+    //     //if (hit)
+    // }
     
     // for (let i = 0; i < letters.length; i++) {
     //     let something = wordArray.find(wordLetter => {
@@ -66,7 +87,7 @@ function wordMatch(letters, word) {
     //         }
     //     })
     // });
-    return true;
+    //return true;
 }
 
 // Toggle between text input and loading animation display
