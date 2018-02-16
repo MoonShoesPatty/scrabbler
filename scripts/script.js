@@ -2,7 +2,7 @@ const letterSubmissionForm = document.querySelector('.letterSubmission');
 const letterInput = document.querySelector('.letterInput');
 const loadingSpinner = document.querySelector('.spinner01');
 
-const wordList = ["pat", "party", "hey", "hoes", "shoe"]
+const wordList = ["pat", "patty", "hey", "hoes", "shoe", "shoes"]
 
 // handle submission of letters
 function handleSubmit(event) {
@@ -33,6 +33,9 @@ function findWords(letters) {
             if (wordMatch(userLetters, word)) {
                 canSpellArray.push(word);
             }
+            console.log("tried: " + word)
+        } else {
+            console.log("skipt: " + word)
         }
         // currentWordArray = word.split('');
         // const letterArray = userLetters;
@@ -49,16 +52,18 @@ function wordMatch(letters, word) {
     for (let i = 0; i < letters.length; i++) {
         let hit = false;
         for (let j = 0; j < word.length; j++) {
-            console.log(word[j], letters[i]);
             if (word[j] === letters[i]) {
-                j = word.length;
+                word = word.slice(0, j) + word.slice(j + 1, word.length)
+                console.log(word)
+                // console.log(`Hit on ${word[j]}`)
+                // console.log(wordCopy.slice(0, j) + wordCopy.slice(j + 1, word.length))
                 hit = true;
                 hitCount++;
-                console.log("^^^^^ Hit! ^^^^^");
+                j = word.length;
             }
         }
     }
-    if (hitCount >= word.length) {
+    if (word === "") {
         return true;
     } else {
         return false;
