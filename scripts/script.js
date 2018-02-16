@@ -2,7 +2,7 @@ const letterSubmissionForm = document.querySelector('.letterSubmission');
 const letterInput = document.querySelector('.letterInput');
 const loadingSpinner = document.querySelector('.spinner01');
 
-const wordList = ["pat", "patty", "patrick"]
+const wordList = ["pat", "party", "hey", "hoes", "shoe"]
 
 // handle submission of letters
 function handleSubmit(event) {
@@ -27,8 +27,12 @@ function findWords(letters) {
 
     // Run through the remaining array to find appropriate words
     wordList.forEach(word => {
-        if (wordMatch(userLetters, word)) {
-            canSpellArray.push(word);
+        // Don't bother checking the word if we don't have enough letters
+        if (!(word.length > letters.length)) {
+            // Check the word
+            if (wordMatch(userLetters, word)) {
+                canSpellArray.push(word);
+            }
         }
         // currentWordArray = word.split('');
         // const letterArray = userLetters;
