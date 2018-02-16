@@ -1,3 +1,4 @@
+// ----- ELEMENT SELECTORS ----- //
 const letterSubmissionForm = document.querySelector('.letterSubmission');
 const letterInput = document.querySelector('.letterInput');
 const loadingSpinner = document.querySelector('.spinner01');
@@ -6,8 +7,10 @@ const resList = document.querySelector('.resultsList');
 // handle submission of letters
 function handleSubmit(event) {
     event.preventDefault();
+    // Show load spinner & empty current list
     toggleLoadAnimation();
     resList.innerHTML = '';
+    // Find all words that can be spelled!
     findWords(letterInput.value);
 }
 
@@ -23,13 +26,12 @@ function findWords(letters) {
         // Eliminate all words that are too long
         // Elimniate 
 
-    
 
     // Run through the remaining array to find appropriate words
     wordList.forEach((word, index) => {
         // Don't bother checking the word if we don't have enough letters
         if (!(word.length > letters.length)) {
-            // Check the word
+            // Check the word - if it matches, save it 
             if (wordMatch(userLetters, word)) {
                 canSpellArray.push(word);
             }
@@ -41,11 +43,6 @@ function findWords(letters) {
             //toggleLoadAnimation()
             console.log('donezo!')
         }
-        // currentWordArray = word.split('');
-        // const letterArray = userLetters;
-        // for (let i = 0; i < letterArray.length; i++) {
-        //     console.log(currentWordArray, letterArray[i]);
-        // }
     })
     canSpellArray.forEach(word => {
         const newEntry = document.createElement('li');
@@ -56,70 +53,30 @@ function findWords(letters) {
 
 // Given an array of letters (letters) and a string (word), determine whether it is possible to spell word with letters
 function wordMatch(letters, word) {
-    let hitCount = 0;
-    let iterations = 0;
-    let wordCopy = word;
+    // User letters
     for (let i = 0; i < letters.length; i++) {
-        let hit = false;
+        // Iterate through word
         for (let j = 0; j < word.length; j++) {
-            iterations++;
+            // If match...
             if (word[j] === letters[i]) {
-                word = word.slice(0, j) + word.slice(j + 1, word.length)
-                console.log(word)
-                // console.log(`Hit on ${word[j]}`)
-                // console.log(wordCopy.slice(0, j) + wordCopy.slice(j + 1, word.length))
-                hit = true;
-                hitCount++;
+                // remove letter from word (so a duplicate user letter won't hit the same word letter)
+                word = word.slice(0, j) + word.slice(j + 1, word.length);
+                // exit this loop, move on to next user letter
                 j = word.length;
             }
         }
     }
-    console.log(iterations + " for " + wordCopy);
+    // if all letters have been removed from the word, you can spell it!
     if (word === "") {
         return true;
     } else {
         return false;
     }
-
-
-
-    // console.log("spelled word: " + spelledWord.join(''));
-    // console.log("Equality check" + word.length === spelledWord.join('').length);
-
-    // return (word.length === spelledWord.join('').length)
-    
-    // for (let i = 0; i < word.length; i++) {
-    //     let hit = false;
-    //     for (let j = 0; j < letters.length; j++) {
-    //         console.log(word[i], letters[j]);
-    //         if (word[i] === letters[j]) {
-    //             j = letters.length;
-    //             console.log("^^^^^ Hit! ^^^^^");
-    //         }
-    //     }
-    //     //if (hit)
-    // }
-    
-    // for (let i = 0; i < letters.length; i++) {
-    //     let something = wordArray.find(wordLetter => {
-    //         return (wordLetter === letters[i])
-    //     })
-    //     console.log(something)
-    // }
-
-    // wordArray.every(wordLetter => {
-    //     letters.every(userLetter => {
-    //         console.log(wordLetter, userLetter)
-    //         if (wordLetter === userLetter) {
-    //             return true;
-    //         }
-    //     })
-    // });
-    //return true;
 }
 
 // Toggle between text input and loading animation display
 function toggleLoadAnimation() {
+    console.log("TOGGLE THAT LOADER, DAWG");
     letterSubmissionForm.classList.toggle("hideElement");
     loadingSpinner.classList.toggle("hideElement");
 }
