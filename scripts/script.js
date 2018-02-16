@@ -41,6 +41,7 @@ function findWords(letters) {
 
 // Given an array of letters (letters) and a string (word), determine whether it is possible to spell word with letters
 function wordMatch(letters, word) {
+    let hitCount = 0;
     for (let i = 0; i < letters.length; i++) {
         let hit = false;
         for (let j = 0; j < word.length; j++) {
@@ -48,9 +49,15 @@ function wordMatch(letters, word) {
             if (word[j] === letters[i]) {
                 j = word.length;
                 hit = true;
+                hitCount++;
                 console.log("^^^^^ Hit! ^^^^^");
             }
         }
+    }
+    if (hitCount >= word.length) {
+        return true;
+    } else {
+        return false;
     }
 
 
