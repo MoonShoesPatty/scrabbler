@@ -92,6 +92,15 @@ input[type=submit] {
     }
 }
 
+/* ----- WORD RESULT LIST ----- */
+.resultsContainer {
+    background-color: lightgrey;
+}
+.resultsList {
+    list-style-type: none;
+}
+
+
 /* ----- HIDE CLASS - ADDED WITH JS ----- */
 .hideElement {
     display: none;
